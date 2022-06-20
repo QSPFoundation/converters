@@ -4,36 +4,33 @@ function escapeQspString(input: string): string {
   return input.replace(/'/g, "''");
 }
 
-function convertDescription(desc: string): string {
+function convertDescription(desc: string, linebreak: string): string {
   if (!desc) return '';
   const lines = desc.split(/\r?\n/);
-  const last = lines.pop();
-  return (
-    lines.map((line) => `*pl '${escapeQspString(line)}'`).join('\r\n') +
-    (lines.length ? '\r\n' : '') +
-    (last ? `*p '${escapeQspString(last)}'\r\n` : '')
-  );
+  return lines
+    .map((line, index) => `${index === lines.length - 1 ? '*p' : '*pl'} '${escapeQspString(line)}'${linebreak}`)
+    .join('');
 }
 
-function convertAction(action: QspAction): string {
-  return `act '${escapeQspString(action.name)}'${
-    action.image ? `, '${escapeQspString(action.image)}'` : ''
-  }:\r\n  ${action.code.split(/\r?\n/).join('\r\n  ')}\r\nend`;
+function convertAction(action: QspAction, linebreak: string): string {
+  const name = escapeQspString(action.name);
+  const image = action.image ? `, '${escapeQspString(action.image)}'` : '';
+  const code = action.code ? action.code.split(/\r?\n/).map((line) => `  ${line}${linebreak}`).join('') : '';
+  return `act '${name}'${image}:${linebreak}${code}end`;
 }
 
-function convertActions(actions: QspAction[]): string {
+function convertActions(actions: QspAction[], linebreak: string): string {
   if (!actions.length) return '';
-  return actions.map(convertAction).join('\r\n') + '\r\n';
+  return actions.map((action) => convertAction(action, linebreak)).join(linebreak) + linebreak;
 }
 
-function convertLocation(location: QspLocation): string {
-  return `# ${location.name}\r\n${convertDescription(
-    location.description
-  )}${convertActions(location.actions)}${location.code}\r\n--- ${
-    location.name
-  } ---------------------------------\r\n`;
+function convertLocation(location: QspLocation, linebreak: string): string {
+  const description = convertDescription(location.description, linebreak);
+  const code = location.code ? location.code.split(/\r?\n/).join(linebreak) + linebreak : '';
+  const actions = convertActions(location.actions, linebreak);
+  return `# ${location.name}${linebreak}${description}${actions}${code}--- ${location.name} ---------------------------------${linebreak}`;
 }
 
-export function writeQsps(locations: QspLocation[]): string {
-  return locations.map(convertLocation).join('\r\n');
+export function writeQsps(locations: QspLocation[], linebreak = '\n'): string {
+  return locations.map((location) => convertLocation(location, linebreak)).join(linebreak);
 }
