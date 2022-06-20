@@ -13,14 +13,14 @@
   "scripts": {
     "build": "",
     "test": "",
-    "lint": "",
+    "lint": "eslint **/*.ts",
     "prepare": "",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
   "husky": {
     "hooks": {
-      "pre-commit": ""
+      "pre-commit": "lint-staged"
     }
   },
   "name": "qsp-converters",
@@ -38,7 +38,13 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
     "prettier": "2.7.1",
     "size-limit": "^7.0.8",
     "tslib": "^2.4.0",
