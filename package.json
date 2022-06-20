@@ -21,7 +21,7 @@
     "build": "microbundle", 
     "dev": "microbundle watch",
     "test": "",
-    "lint": "eslint **/*.ts",
+    "lint": "eslint .",
     "prepare": "",
     "size": "size-limit",
     "analyze": "size-limit --why"
