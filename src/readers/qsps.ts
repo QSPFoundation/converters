@@ -2,7 +2,6 @@ import { QspLocation } from '../contracts';
 
 const QSP_STARTLOC = '#';
 const QSP_ENDLOC = '-';
-const QSP_STRSDELIM = '\r\n';
 const QSP_QUOTES = ["'", '"'];
 const QSP_LCURLY = '{';
 const QSP_RCURLY = '}';
@@ -22,7 +21,7 @@ export function readQsps(content: string): QspLocation[] {
         if (line.startsWith(QSP_ENDLOC)) {
           isInLoc = false;
           if (curLoc) {
-            curLoc.code = locCode.join(QSP_STRSDELIM);
+            curLoc.code = locCode;
             locCode = [];
             locations.push(curLoc);
             curLoc = null;
@@ -54,8 +53,8 @@ export function readQsps(content: string): QspLocation[] {
         isInLoc = true;
         curLoc = {
           name: line.slice(QSP_STARTLOC.length).trim(),
-          description: '',
-          code: '',
+          description: [],
+          code: [],
           actions: [],
         };
       }
@@ -63,7 +62,7 @@ export function readQsps(content: string): QspLocation[] {
   }
 
   if (isInLoc && curLoc) {
-    curLoc.code = locCode.join(QSP_STRSDELIM);
+    curLoc.code = locCode;
     locations.push(curLoc);
   }
 

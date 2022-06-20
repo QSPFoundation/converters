@@ -13,8 +13,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: '',
-        description: '',
+        code: [],
+        description: [],
         actions: [],
       },
     ]);
@@ -28,8 +28,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: '*pl x',
-        description: '',
+        code: ['*pl x'],
+        description: [],
         actions: [],
       },
     ]);
@@ -42,8 +42,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: '*pl x',
-        description: '',
+        code: ['*pl x'],
+        description: [],
         actions: [],
       },
     ]);
@@ -59,8 +59,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `'- first line\r\n- second line\r\n- third line'`,
-        description: '',
+        code: [`'- first line`, '- second line', `- third line'`],
+        description: [],
         actions: [],
       },
     ]);
@@ -76,8 +76,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `'- first line\r\n- second'' line\r\n- third line'`,
-        description: '',
+        code: [`'- first line`, `- second'' line`, `- third line'`],
+        description: [],
         actions: [],
       },
     ]);
@@ -93,8 +93,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `"- first line\r\n- second line\r\n- third line"`,
-        description: '',
+        code: [`"- first line`, `- second line`, `- third line"`],
+        description: [],
         actions: [],
       },
     ]);
@@ -110,8 +110,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `"- first line\r\n- second"" line\r\n- third line"`,
-        description: '',
+        code: [`"- first line`, `- second"" line`, `- third line"`],
+        description: [],
         actions: [],
       },
     ]);
@@ -127,8 +127,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `{- first line\r\n- second line\r\n- third line}`,
-        description: '',
+        code: [`{- first line`, `- second line`, `- third line}`],
+        description: [],
         actions: [],
       },
     ]);
@@ -146,8 +146,8 @@ describe('qsps reader', () => {
     expect(result).toMatchObject([
       {
         name: 'test',
-        code: `{\r\n{- first line\r\n- second line\r\n- third line}\r\n}`,
-        description: '',
+        code: [`{`, `{- first line`, `- second line`, `- third line}`, `}`],
+        description: [],
         actions: [],
       },
     ]);

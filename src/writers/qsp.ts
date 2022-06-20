@@ -11,14 +11,14 @@ export function writeQsp(locations: QspLocation[]): ArrayBuffer {
 
   for (const location of locations) {
     stream.writeLine(location.name);
-    stream.writeLine(location.description);
-    stream.writeLine(location.code);
+    stream.writeLine(location.description.join('\r\n'));
+    stream.writeLine(location.code.join('\r\n'));
 
     stream.writeLine(String(location.actions.length));
     for (const action of location.actions) {
       stream.writeLine(action.image ?? '');
       stream.writeLine(action.name);
-      stream.writeLine(action.code);
+      stream.writeLine(action.code.join('\r\n'));
     }
   }
   return stream.finalize();

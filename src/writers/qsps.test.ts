@@ -6,8 +6,8 @@ describe('qsps writer', () => {
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
+        code: [],
+        description: [],
         actions: [],
       },
     ];
@@ -22,14 +22,14 @@ describe('qsps writer', () => {
     const locations: QspLocation[] = [
       {
         name: 'first',
-        code: '',
-        description: '',
+        code: [],
+        description: [],
         actions: [],
       },
       {
         name: 'second',
-        code: '',
-        description: '',
+        code: [],
+        description: [],
         actions: [],
       },
     ];
@@ -46,8 +46,8 @@ describe('qsps writer', () => {
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: `First line.`,
+        code: [],
+        description: [`First line.`],
         actions: [],
       },
     ];
@@ -63,9 +63,8 @@ describe('qsps writer', () => {
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: `First line.
-Second line.`,
+        code: [],
+        description: [`First line.`, `Second line.`],
         actions: [],
       },
     ];
@@ -82,8 +81,8 @@ Second line.`,
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: `First's line.`,
+        code: [],
+        description: [`First's line.`],
         actions: [],
       },
     ];
@@ -99,8 +98,8 @@ Second line.`,
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '*p x',
-        description: '',
+        code: ['*p x'],
+        description: [],
         actions: [],
       },
     ];
@@ -116,9 +115,8 @@ Second line.`,
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: `*pl x
-*pl y`,
-        description: '',
+        code: [`*pl x`, `*pl y`],
+        description: [],
         actions: [],
       },
     ];
@@ -135,12 +133,14 @@ Second line.`,
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: 'Do test',
-          code: ''
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: 'Do test',
+            code: [],
+          },
+        ],
       },
     ];
 
@@ -156,12 +156,14 @@ end
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: `Do test's`,
-          code: ''
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: `Do test's`,
+            code: [],
+          },
+        ],
       },
     ];
 
@@ -177,13 +179,15 @@ end
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: 'Do test',
-          code: '',
-          image: 'gfx/1.png'
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: 'Do test',
+            code: [],
+            image: 'gfx/1.png',
+          },
+        ],
       },
     ];
 
@@ -199,13 +203,15 @@ end
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: 'Do test',
-          code: '',
-          image: `gfx/1'1.png`
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: 'Do test',
+            code: [],
+            image: `gfx/1'1.png`,
+          },
+        ],
       },
     ];
 
@@ -221,12 +227,14 @@ end
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: 'Do test',
-          code: '*pl x'
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: 'Do test',
+            code: ['*pl x'],
+          },
+        ],
       },
     ];
 
@@ -236,20 +244,21 @@ act 'Do test':
   *pl x
 end
 --- test ---------------------------------
-`);    
-  })
+`);
+  });
 
   it('should write action with multi line code', () => {
     const locations: QspLocation[] = [
       {
         name: 'test',
-        code: '',
-        description: '',
-        actions: [{
-          name: 'Do test',
-          code: `*pl x
-*pl y`
-        }],
+        code: [],
+        description: [],
+        actions: [
+          {
+            name: 'Do test',
+            code: [`*pl x`, `*pl y`],
+          },
+        ],
       },
     ];
 
@@ -260,6 +269,6 @@ act 'Do test':
   *pl y
 end
 --- test ---------------------------------
-`);    
-  })
+`);
+  });
 });

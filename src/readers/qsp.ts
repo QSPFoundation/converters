@@ -12,15 +12,15 @@ function readNewFormat(stream: QspByteStream): QspLocation[] {
 
   for (let i = 0; i < locCount; i++) {
     const name = stream.readLine();
-    const description = stream.readLine();
-    const code = stream.readLine();
+    const description = stream.readLine().split(/\r?\n/);
+    const code = stream.readLine().split(/\r?\n/);
 
     const actsCount = parseInt(stream.readLine());
     const actions: QspAction[] = [];
     for (let j = 0; j < actsCount; ++j) {
       const image = stream.readLine();
       const actionName = stream.readLine();
-      const actionCode = stream.readLine();
+      const actionCode = stream.readLine().split(/\r?\n/);
       actions.push({ image, name: actionName, code: actionCode });
     }
     locations.push({ name, description, code, actions });
@@ -41,15 +41,15 @@ function readOldFormat(stream: QspByteStream): QspLocation[] {
   const actsCount = 20;
   for (let i = 0; i < locCount; i++) {
     const name = stream.readLine();
-    const description = stream.readLine();
-    const code = stream.readLine();
+    const description = stream.readLine().split(/\r?\n/);
+    const code = stream.readLine().split(/\r?\n/);
 
     const actions: QspAction[] = [];
     for (let j = 0; j < actsCount; ++j) {
-      const action_name = stream.readLine();
-      const action_code = stream.readLine();
-      if (action_name) {
-        actions.push({ name: action_name, code: action_code });
+      const actionName = stream.readLine();
+      const actionCode = stream.readLine().split(/\r?\n/);
+      if (actionName) {
+        actions.push({ name: actionName, code: actionCode });
       }
     }
     locations.push({ name, description, code, actions });
