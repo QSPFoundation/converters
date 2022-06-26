@@ -1,5 +1,5 @@
 {
-  "name": "qsp-converters",
+  "name": "@qsp/converters",
   "type": "module",
   "version": "0.1.0",
   "license": "MIT",
@@ -21,38 +21,19 @@
     "dev": "microbundle watch",
     "test": "jest",
     "lint": "eslint .",
-    "prepare": "",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "prepublish": "npm run build",
+    "publish": "clean-publish"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
-  "size-limit": [
-    {
-      "path": "dist/index.cjs",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/index.modern.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/index.module.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/index.umd.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
     "@types/jest": "^28.1.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "clean-publish": "^4.0.1",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -61,7 +42,6 @@
     "lint-staged": "^13.0.2",
     "microbundle": "^0.15.0",
     "prettier": "2.7.1",
-    "size-limit": "^7.0.8",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
     "tslib": "^2.4.0",

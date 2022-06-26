@@ -1,0 +1,9 @@
+{
+  "files": [
+    "coverage",
+    "src",
+    ".dccache",
+    "jest.config.ts",
+    ".gitignore"
+  ]
+}
