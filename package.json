@@ -14,7 +14,7 @@
   "unpkg": "./dist/index.umd.js",
   "typings": "dist/index.d.ts",
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "build": "microbundle",
