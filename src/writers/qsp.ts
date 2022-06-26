@@ -5,7 +5,7 @@ export function writeQsp(locations: QspLocation[]): ArrayBuffer {
   const stream = new QspByteStream();
 
   stream.writeLine(QSP_GAMEID, false);
-  stream.writeLine('@qsp/converters', false);
+  stream.writeLine('@qsp/converters 1.0', false);
   stream.writeLine(QSP_PASSWD);
   stream.writeLine(String(locations.length));
 

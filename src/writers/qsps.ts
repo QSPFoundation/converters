@@ -13,7 +13,7 @@ function convertDescription(lines: string[], linebreak: string): string {
 function convertAction(action: QspAction, linebreak: string): string {
   const name = escapeQspString(action.name);
   const image = action.image ? `, '${escapeQspString(action.image)}'` : '';
-  const code = action.code ? action.code.map((line) => `  ${line}${linebreak}`).join('') : '';
+  const code = action.code.map((line) => `  ${line}${linebreak}`).join('');
   return `act '${name}'${image}:${linebreak}${code}end`;
 }
 

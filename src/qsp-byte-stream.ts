@@ -113,15 +113,7 @@ export class QspByteStream {
     this.writeString(QSP_STRSDELIM, false);
   }
 
-  public tell(): number {
-    return this.cursor;
-  }
-
   public seek(offset: number): void {
     this.cursor = offset;
-  }
-
-  public skip(offset: number): void {
-    this.cursor += offset;
   }
 }
