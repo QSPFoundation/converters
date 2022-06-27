@@ -1,0 +1,9 @@
+.editorconfig
+.eslintignore
+.eslintrc.cjs
+.github/**/*
+.lintstagedrc
+.prettierignore
+.prettierrc.json
+jest.config.ts
+src/**/*
