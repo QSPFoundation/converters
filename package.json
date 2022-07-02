@@ -1,9 +1,14 @@
 {
   "name": "@qsp/converters",
   "type": "module",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Converters of different file formats for QSP platform",
-  "keywords": ["qsp", "qsps", "file", "converter"],
+  "keywords": [
+    "qsp",
+    "qsps",
+    "file",
+    "converter"
+  ],
   "homepage": "https://github.com/QSPFoundation/converters#readme",
   "bugs": {
     "url": "https://github.com/QSPFoundation/converters/issues"
@@ -26,7 +31,9 @@
   "engines": {
     "node": ">=14"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
