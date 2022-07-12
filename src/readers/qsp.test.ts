@@ -48,6 +48,38 @@ describe('qsp reader', () => {
     ]);
   });
 
+  it('should not add empty line to description', () => {
+    const content = [
+      'QSPGAME'.split('').map((char) => char.charCodeAt(0)),
+      separator,
+      'qgen'.split('').map((char) => char.charCodeAt(0)),
+      separator,
+      encode('No'),
+      separator,
+      encode('1'),
+      separator,
+      encode('loc_name'),
+      separator,
+      separator,
+      encode('loc_code_line1'),
+      separator,
+      encode('0'),
+      separator,
+    ].flat();
+    const buffer = new Uint16Array(content);
+
+    const result = readQsp(buffer.buffer);
+
+    expect(result).toEqual([
+      {
+        name: 'loc_name',
+        description: [],
+        code: ['loc_code_line1'],
+        actions: [],
+      },
+    ]);
+  });
+
   it('should read old format', () => {
     const content = [
       '1'.charCodeAt(0),
@@ -110,8 +142,8 @@ describe('qsp reader', () => {
     expect(result).toEqual([
       {
         name: 'старт',
-        description: [""],
-        code: [""],
+        description: [''],
+        code: [''],
         actions: [],
       },
     ]);

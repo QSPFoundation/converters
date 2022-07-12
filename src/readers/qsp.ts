@@ -12,7 +12,10 @@ function readNewFormat(stream: QspByteStream): QspLocation[] {
 
   for (let i = 0; i < locCount; i++) {
     const name = stream.readLine();
-    const description = stream.readLine().split(/\r?\n/);
+    let description = stream.readLine().split(/\r?\n/);
+    if (description.length === 1 && description[0] === '') {
+      description = [];
+    }
     const code = stream.readLine().split(/\r?\n/);
 
     const actsCount = parseInt(stream.readLine());
