@@ -1,7 +1,7 @@
 {
   "name": "@qsp/converters",
   "type": "module",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Converters of different file formats for QSP platform",
   "keywords": [
     "qsp",
