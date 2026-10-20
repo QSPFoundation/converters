@@ -7,7 +7,6 @@
     "lib": ["dom", "esnext"],
     // TS 6 no longer auto-includes @types/*; needed for test files
     "types": ["jest", "node"],
-    "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
     // output .js.map sourcemap files for consumers
@@ -22,7 +21,7 @@
     // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    // resolve imports the way bundlers (microbundle) do
+    // resolve imports the way bundlers (tsdown) do
     "moduleResolution": "bundler",
     // interop between ESM and CJS modules. Recommended by TS
     "esModuleInterop": true,

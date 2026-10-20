@@ -19,7 +19,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Gotchas
 
 - Package is ESM (`"type": "module"`), so CommonJS config files must use `.cjs`.
-- TypeScript is held at 6.x: ts-jest and typescript-eslint don't support TS 7 yet. `package.json` `overrides` bumps microbundle's `rollup-plugin-typescript2` (microbundle is unmaintained and its pinned rpt2 forces the TS 6-deprecated `moduleResolution: node10`).
+- Build is tsdown (`tsdown.config.ts`, ESM + CJS). It rewrites `exports`/`main`/`module`/`types` in `package.json` on every build — change outputs in the config, not by hand. Syntax is downleveled to `engines.node`. tsdown is 0.x, pinned with `~`.
+- TypeScript is held at 6.x: ts-jest and typescript-eslint don't support TS 7 yet.
 - The husky pre-commit config in `package.json` is husky v4 style while husky 9 is installed — it does not run.
 
 ## Workflow

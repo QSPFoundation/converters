@@ -19,24 +19,23 @@
     "type": "git",
     "url": "https://github.com/QSPFoundation/converters.git"
   },
-  "source": "src/index.ts",
   "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
-  "typings": "dist/index.d.ts",
   "engines": {
     "node": ">=14"
   },
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "test": "jest",
     "lint": "eslint .",
     "version": "node scripts/sync-version.js && git add src/version.ts",
@@ -57,19 +56,18 @@
     "husky": "^9.1.7",
     "jest": "^30.5.2",
     "lint-staged": "^17.6.0",
-    "microbundle": "^0.15.1",
     "np": "^12.1.1",
     "prettier": "^3.9.10",
     "ts-jest": "^29.4.15",
     "ts-node": "^10.9.2",
-    "tslib": "^2.8.1",
+    "tsdown": "~0.23.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0"
   },
-  "overrides": {
-    "rollup-plugin-typescript2": "^0.37.0"
-  },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts"
 }
