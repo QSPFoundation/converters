@@ -39,6 +39,7 @@
     "dev": "microbundle watch",
     "test": "jest",
     "lint": "eslint .",
+    "version": "node scripts/sync-version.js && git add src/version.ts",
     "prerelease": "npm run build",
     "release": "np"
   },

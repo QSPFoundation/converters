@@ -1,11 +1,12 @@
 import { QspLocation } from '../contracts';
 import { QspByteStream, QSP_GAMEID, QSP_PASSWD } from '../qsp-byte-stream';
+import { VERSION } from '../version';
 
 export function writeQsp(locations: QspLocation[]): ArrayBuffer {
   const stream = new QspByteStream();
 
   stream.writeLine(QSP_GAMEID, false);
-  stream.writeLine('@qsp/converters 1.0', false);
+  stream.writeLine(`@qsp/converters ${VERSION}`, false);
   stream.writeLine(QSP_PASSWD);
   stream.writeLine(String(locations.length));
 

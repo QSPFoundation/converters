@@ -1,3 +1,4 @@
+import { VERSION } from '../version';
 import { writeQsp } from './qsp';
 
 describe('qsp writer', () => {
@@ -8,7 +9,7 @@ describe('qsp writer', () => {
     const content = [
       'QSPGAME'.split('').map((char) => char.charCodeAt(0)),
       separator,
-      '@qsp/converters 1.0'.split('').map((char) => char.charCodeAt(0)),
+      `@qsp/converters ${VERSION}`.split('').map((char) => char.charCodeAt(0)),
       separator,
       encode('No'),
       separator,
