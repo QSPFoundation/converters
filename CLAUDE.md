@@ -27,4 +27,4 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Commit directly to `main`.
 - Release: `npm version <major|minor|patch> && git push --follow-tags`. The npm `version` script regenerates `src/version.ts` (written into `.qsp` output by `writeQsp`) — never edit it by hand; `src/version.test.ts` fails if it drifts from package.json.
-- Pushing a `v*` tag triggers `.github/workflows/publish.yml`: lint, test, `npm publish` via npm trusted publishing (OIDC, no token, adds provenance), then a GitHub release. Never run `npm publish` locally.
+- Pushing a `v*` tag triggers `.github/workflows/publish.yml`: lint, test, build, `npm stage publish` via npm trusted publishing (OIDC, no token). The trusted publisher is stage-only — plain `npm publish` is rejected with E403. The version goes live only after a maintainer approves it with 2FA on npmjs.com; create the GitHub release (`gh release create vX.Y.Z --generate-notes`) after approval. Never publish locally.
