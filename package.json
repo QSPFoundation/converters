@@ -1,6 +1,7 @@
 {
   "name": "@qsp/converters",
   "type": "module",
+  "packageManager": "pnpm@12.14.0",
   "version": "2.0.0",
   "description": "Converters of different file formats for QSP platform",
   "keywords": [
@@ -39,7 +40,7 @@
     "test": "jest",
     "lint": "eslint .",
     "version": "node scripts/sync-version.js && git add src/version.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm build"
   },
   "husky": {
     "hooks": {

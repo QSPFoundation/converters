@@ -28,18 +28,22 @@ jobs:
       - name: Check tag matches package.json version
         run: test "$GITHUB_REF_NAME" = "v$(node -p "require('./package.json').version")"
 
+      # no dependency cache for release builds
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
       - name: Install deps
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
 
       - name: Test
-        run: npm test -- --ci --maxWorkers=2
+        run: pnpm test --ci --maxWorkers=2
 
       - name: Build
-        run: npm run build
+        run: pnpm build
 
-      # the trusted publisher is stage-only: a maintainer approves the version with 2FA on npmjs.com
+      # pnpm has no staged publishing, so npm does the upload; the trusted publisher is stage-only: a maintainer approves the version with 2FA on npmjs.com
       - name: Stage publish
         run: npm stage publish
