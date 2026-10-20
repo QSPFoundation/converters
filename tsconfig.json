@@ -5,6 +5,8 @@
     "module": "esnext",
     "target": "esnext",
     "lib": ["dom", "esnext"],
+    // TS 6 no longer auto-includes @types/*; needed for test files
+    "types": ["jest", "node"],
     "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
@@ -20,14 +22,14 @@
     // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    // use Node's module resolution algorithm, instead of the legacy TS one
-    "moduleResolution": "node",
+    // resolve imports the way bundlers (microbundle) do
+    "moduleResolution": "bundler",
     // interop between ESM and CJS modules. Recommended by TS
     "esModuleInterop": true,
     // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
     "skipLibCheck": true,
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": true
   }
 }

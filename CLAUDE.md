@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Typecheck: `npx tsc` (tsconfig has `noEmit`; there is no npm script for it)
 - Single test: `npx jest src/readers/qsp.test.ts` or `npx jest -t "<test name>"` (coverage is always on via `jest.config.ts`)
 - Format: run `npx prettier --write <files>` on every file you edit (no npm script; not enforced in CI)
-- CI runs `npm run lint`, `npm test`, `npm run build` on Node 14/16/18 — keep code Node 14 compatible
+- CI runs `npm run lint`, `npm test`, `npm run build` on Node 22/24. Published output still declares `engines.node >=14`, so don't use newer runtime APIs in `src/`
 
 ## Architecture
 
@@ -18,8 +18,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Gotchas
 
-- Package is ESM (`"type": "module"`), so CommonJS config files must use `.cjs` (e.g. `.eslintrc.cjs`).
-- The husky pre-commit config in `package.json` is husky v4 style while husky 8 is installed — it does not run.
+- Package is ESM (`"type": "module"`), so CommonJS config files must use `.cjs`.
+- TypeScript is held at 6.x: ts-jest and typescript-eslint don't support TS 7 yet. `package.json` `overrides` bumps microbundle's `rollup-plugin-typescript2` (microbundle is unmaintained and its pinned rpt2 forces the TS 6-deprecated `moduleResolution: node10`).
+- The husky pre-commit config in `package.json` is husky v4 style while husky 9 is installed — it does not run.
 
 ## Workflow
 

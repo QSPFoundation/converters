@@ -23,9 +23,7 @@ const CP1251ToUnicodeTable: number[] = [
 ];
 
 function convertCP1251(char: number): string {
-  return String.fromCharCode(
-    char >= 0x80 ? CP1251ToUnicodeTable[char - 0x80] : char
-  );
+  return String.fromCharCode(char >= 0x80 ? CP1251ToUnicodeTable[char - 0x80] : char);
 }
 
 export class QspByteStream {
@@ -60,12 +58,8 @@ export class QspByteStream {
 
   public read(): number {
     const position = this.cursor;
-    this.cursor += this.isUnicode
-      ? Uint16Array.BYTES_PER_ELEMENT
-      : Uint8Array.BYTES_PER_ELEMENT;
-    return this.isUnicode
-      ? this.view.getUint16(position, true)
-      : this.view.getUint8(position);
+    this.cursor += this.isUnicode ? Uint16Array.BYTES_PER_ELEMENT : Uint8Array.BYTES_PER_ELEMENT;
+    return this.isUnicode ? this.view.getUint16(position, true) : this.view.getUint8(position);
   }
 
   public readLine(shouldDecode = true): string {
@@ -82,10 +76,7 @@ export class QspByteStream {
         chars.push(char);
       }
     }
-    return this.isUnicode
-      ? // eslint-disable-next-line prefer-spread
-        chars.map(char => String.fromCharCode(char)).join('')
-      : chars.map(convertCP1251).join('');
+    return this.isUnicode ? chars.map((char) => String.fromCharCode(char)).join('') : chars.map(convertCP1251).join('');
   }
 
   public write(value: number): void {
@@ -99,9 +90,7 @@ export class QspByteStream {
     const charCodes = input.split('').map((char): number => char.charCodeAt(0));
     for (const point of charCodes.values()) {
       if (shouldEncode) {
-        this.write(
-          point === QSP_CODREMOV ? -QSP_CODREMOV : point - QSP_CODREMOV
-        );
+        this.write(point === QSP_CODREMOV ? -QSP_CODREMOV : point - QSP_CODREMOV);
       } else {
         this.write(point);
       }
@@ -109,7 +98,7 @@ export class QspByteStream {
   }
 
   public writeLine(input: string, shouldEncode = true): void {
-    input && this.writeString(input, shouldEncode);
+    if (input) this.writeString(input, shouldEncode);
     this.writeString(QSP_STRSDELIM, false);
   }
 
